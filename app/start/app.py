@@ -1,42 +1,18 @@
 import json
-
-# import requests
-
+import os
 
 def handler(event, context):
-    """Sample pure Lambda function
+    db_instance = os.environ['DB_INSTANCE']
+    rds = boto3.client('rds')
 
-    Parameters
-    ----------
-    event: dict, required
-        API Gateway Lambda Proxy Input Format
-
-        Event doc: https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html#api-gateway-simple-proxy-for-lambda-input-format
-
-    context: object, required
-        Lambda Context runtime methods and attributes
-
-        Context doc: https://docs.aws.amazon.com/lambda/latest/dg/python-context-object.html
-
-    Returns
-    ------
-    API Gateway Lambda Proxy Output Format: dict
-
-        Return doc: https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html
-    """
-
-    # try:
-    #     ip = requests.get("http://checkip.amazonaws.com/")
-    # except requests.RequestException as e:
-    #     # Send some context about this error to Lambda Logs
-    #     print(e)
-
-    #     raise e
-
-    return {
-        "statusCode": 200,
-        "body": json.dumps({
-            "message": "start",
-            # "location": ip.text.replace("\n", "")
-        }),
-    }
+    try:
+        response = rds_client.start_db_instance(DBInstanceIdentifier=db_instance_identifier)
+        return {
+            'statusCode': 200,
+            'body': f'Successfully paused RDS instance: {db_instance_identifier}'
+        }
+    except Exception as e:
+        return {
+            'statusCode': 500,
+            'body': f'Error pausing RDS instance: {str(e)}'
+        }
