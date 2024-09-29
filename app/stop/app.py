@@ -3,7 +3,7 @@ import json
 # import requests
 
 
-def lambda_handler(event, context):
+def handler(event, context):
     """Sample pure Lambda function
 
     Parameters
@@ -36,7 +36,7 @@ def lambda_handler(event, context):
     return {
         "statusCode": 200,
         "body": json.dumps({
-            "message": "hello world",
+            "message": "stop",
             # "location": ip.text.replace("\n", "")
         }),
     }
