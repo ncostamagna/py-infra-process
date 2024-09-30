@@ -6,7 +6,6 @@ instance_id = os.environ['EC2_INSTANCE']
 ec2_client = boto3.client('ec2')
 
 def start(event, context):
-    
     try:
         response = ec2_client.start_instances(InstanceIds=[instance_id])
         return {
@@ -20,7 +19,6 @@ def start(event, context):
         }
 
 def stop(event, context):
-
     try:
         response = ec2_client.stop_instances(InstanceIds=[instance_id])
         return {
