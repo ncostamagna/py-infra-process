@@ -16,11 +16,11 @@ Globals:
       LogFormat: JSON
 
 Resources:
-  StartResources:
+  StartRDSResources:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
-      CodeUri: app/start/
-      Handler: app.handler
+      CodeUri: app/rds/
+      Handler: app.start
       Runtime: python3.9
       Architectures:
       - x86_64
@@ -28,13 +28,13 @@ Resources:
         HelloWorld:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
           Properties:
-            Path: /start
+            Path: /rds/start
             Method: post
-  StopResources:
+  StopRDSResources:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
-      CodeUri: app/stop/
-      Handler: app.handler
+      CodeUri: app/rds/
+      Handler: app.stop
       Runtime: python3.9
       Architectures:
       - x86_64
@@ -42,7 +42,35 @@ Resources:
         HelloWorld:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
           Properties:
-            Path: /stop
+            Path: /rds/stop
+            Method: post
+  StartEC2Resources:
+      Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+      Properties:
+        CodeUri: app/ec2/
+        Handler: app.start
+        Runtime: python3.9
+        Architectures:
+        - x86_64
+        Events:
+          HelloWorld:
+            Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+            Properties:
+              Path: /ec2/start
+              Method: post
+  StopEC2Resources:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: app/ec2/
+      Handler: app.stop
+      Runtime: python3.9
+      Architectures:
+      - x86_64
+      Events:
+        HelloWorld:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /ec2/stop
             Method: post
 
 Outputs:
