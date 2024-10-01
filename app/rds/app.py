@@ -6,6 +6,7 @@ db_instance = os.environ['DB_INSTANCE']
 rds = boto3.client('rds')
 
 def start(event, context):
+    print(f'Starting RDS instance: {db_instance}')
     try:
         response = rds.start_db_instance(DBInstanceIdentifier=db_instance)
         return {
@@ -19,6 +20,7 @@ def start(event, context):
         }
 
 def stop(event, context):
+    print(f'Stopping RDS instance: {db_instance}')
     try:
         response = rds.stop_db_instance(DBInstanceIdentifier=db_instance)
         return {
