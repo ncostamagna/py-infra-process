@@ -9,6 +9,7 @@ def start(event, context):
     print(f'Starting RDS instance: {db_instance}')
     try:
         response = rds.start_db_instance(DBInstanceIdentifier=db_instance)
+        print(f'Successfully started RDS instance: {db_instance}')
         return {
             'statusCode': 200,
             'body': f'Successfully paused RDS instance: {db_instance}'
@@ -23,9 +24,10 @@ def stop(event, context):
     print(f'Stopping RDS instance: {db_instance}')
     try:
         response = rds.stop_db_instance(DBInstanceIdentifier=db_instance)
+        print(f'Successfully paused RDS instance: {db_instance}')
         return {
             'statusCode': 200,
-            'body': f'Successfully paused RDS instance: {db_instance}'
+            'body': f'Successfully stoped RDS instance: {db_instance}'
         }
     except Exception as e:
         return {
