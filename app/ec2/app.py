@@ -15,6 +15,7 @@ def start(event, context):
             'body': f'Successfully started EC2 instance: {instance_id}'
         }
     except Exception as e:
+        print(f'Error starting EC2 instance: {str(e)}')
         return {
             'statusCode': 500,
             'body': f'Error starting EC2 instance: {str(e)}'
@@ -30,6 +31,7 @@ def stop(event, context):
             'body': f'Successfully stopped EC2 instance: {instance_id}'
         }
     except Exception as e:
+        print(f'Error stopping EC2 instance: {str(e)}')
         return {
             'statusCode': 500,
             'body': f'Error stopping EC2 instance: {str(e)}'
