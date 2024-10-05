@@ -31,7 +31,7 @@ def stop(event, context):
             'body': f'Successfully stoped RDS instance: {db_instance}'
         }
     except Exception as e:
-        print(f'Error stopping RDS instance: {str(e)}')
+        print(f'Error pausing RDS instance: {str(e)}')
         return {
             'statusCode': 500,
             'body': f'Error pausing RDS instance: {str(e)}'
