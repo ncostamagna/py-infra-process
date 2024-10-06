@@ -2,7 +2,7 @@ import json
 import os
 import boto3
 
-instance_id = os.environ.get['EC2_INSTANCE']
+instance_id = os.environ.get('EC2_INSTANCE')
 ec2_client = boto3.client('ec2')
 
 def start(event, context):

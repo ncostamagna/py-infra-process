@@ -2,7 +2,7 @@ import json
 import os
 import boto3
 
-db_instance = os.environ.get['DB_INSTANCE']
+db_instance = os.environ.get('DB_INSTANCE')
 rds = boto3.client('rds')
 
 def start(event, context):
