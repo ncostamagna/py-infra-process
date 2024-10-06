@@ -10,7 +10,10 @@ Globals:
   Function:
     Timeout: 3
     MemorySize: 128
-
+    Environment:
+      Variables:
+        EC2_INSTANCE: '9999'
+        DB_INSTANCE: '9999'
     # You can add LoggingConfig parameters such as the Logformat, Log Group, and SystemLogLevel or ApplicationLogLevel. Learn more here https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html#sam-function-loggingconfig.
     LoggingConfig:
       LogFormat: JSON
@@ -22,12 +25,10 @@ Resources:
       CodeUri: app/rds/
       Handler: app.start
       Runtime: python3.9
-      Environment:
-        Variables:
-          EC2_INSTANCE: 
-          DB_INSTANCE:
+      Policies:
+        - arn:aws:iam::831117102174:policy/axul-db-handler
       Architectures:
-      - x86_64
+        - x86_64
       Events:
         HelloWorld:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
@@ -40,12 +41,10 @@ Resources:
       CodeUri: app/rds/
       Handler: app.stop
       Runtime: python3.9
-      Environment:
-        Variables:
-          EC2_INSTANCE: 
-          DB_INSTANCE:
+      Policies:
+        - arn:aws:iam::831117102174:policy/axul-db-handler
       Architectures:
-      - x86_64
+        - x86_64
       Events:
         HelloWorld:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
@@ -58,12 +57,8 @@ Resources:
         CodeUri: app/ec2/
         Handler: app.start
         Runtime: python3.9
-        Environment:
-        Variables:
-          EC2_INSTANCE: 
-          DB_INSTANCE:
         Architectures:
-        - x86_64
+          - x86_64
         Events:
           HelloWorld:
             Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
@@ -76,12 +71,8 @@ Resources:
       CodeUri: app/ec2/
       Handler: app.stop
       Runtime: python3.9
-      Environment:
-        Variables:
-          EC2_INSTANCE: 
-          DB_INSTANCE:
       Architectures:
-      - x86_64
+        - x86_64
       Events:
         HelloWorld:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
