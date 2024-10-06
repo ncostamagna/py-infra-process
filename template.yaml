@@ -22,6 +22,10 @@ Resources:
       CodeUri: app/rds/
       Handler: app.start
       Runtime: python3.9
+      Environment:
+        Variables:
+          EC2_INSTANCE: 
+          DB_INSTANCE:
       Architectures:
       - x86_64
       Events:
@@ -36,6 +40,10 @@ Resources:
       CodeUri: app/rds/
       Handler: app.stop
       Runtime: python3.9
+      Environment:
+        Variables:
+          EC2_INSTANCE: 
+          DB_INSTANCE:
       Architectures:
       - x86_64
       Events:
@@ -50,6 +58,10 @@ Resources:
         CodeUri: app/ec2/
         Handler: app.start
         Runtime: python3.9
+        Environment:
+        Variables:
+          EC2_INSTANCE: 
+          DB_INSTANCE:
         Architectures:
         - x86_64
         Events:
@@ -64,6 +76,10 @@ Resources:
       CodeUri: app/ec2/
       Handler: app.stop
       Runtime: python3.9
+      Environment:
+        Variables:
+          EC2_INSTANCE: 
+          DB_INSTANCE:
       Architectures:
       - x86_64
       Events:
